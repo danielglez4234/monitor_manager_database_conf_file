@@ -1,8 +1,21 @@
 # monitor manager database configurations file
 
-el script actualmente genera la siguiente vista para la visualización de los datos de los monitores con el formato predefinido para 'monitor_description' y 'magnitude_description'
+#### Notas:
+- **Magnitude_description**:
+    - El campo "description" no esta en la base de datos pero si en los demás. Por ahora el campo es agregado colocado a "None" por defecto.
+    - De igual forma los campos upper_limit, lower_limit, default_storage_period y default_sampling_period son colocados a "true", "false", "0.0", "0.0" por defecto respectivamente.
+    - El campo "value" no esta en el .profile pero si en los demás.
+- **Monitor_description**:
+  - El script hace el siguiente arreglo siguiendo el formato establecido \
+  En el upper_limit y el lower_limit cuando los elementos de un monitor array son todos iguales los agrupa en uno solo \
+  ejemplo: \
+    desigual: array["1000", "1000", "23", "1000"]..   result => "upper_limit": "["1000","1000", "1000", "23", "1000"]" \
+    igual:    array["1000", "1000", "1000", "1000"].. result => "upper_limit": "["1000"]"
 
-### monitor_description
+
+#### *- El script actualmente genera la siguiente vista de los datos de los monitores con el formato predefinido:
+
+### monitor_description:
 
     "instance": <component_name>,
     "className": <class_name>,
@@ -19,7 +32,7 @@ el script actualmente genera la siguiente vista para la visualización de los da
     }
   }
   
-### magnitude_description
+### magnitude_description:
 
     "instance": <component_name>,
     "className": <class_name>,
